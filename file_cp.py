@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # Dev: Gopal Dasbairagya
 # 01 May,2020
-#v.5.31
+# v.5.31
 #test with nl/file/favicon.ico
 try:
     import threading
@@ -26,7 +26,7 @@ except ImportError:
     print("Trying to Install required module: openpyxl\n")
     os.system('python3 -m pip install openpyxl ')
 finally:
-	import threading
+    import threading
     import json
     import os, sys
     from os import path
