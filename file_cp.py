@@ -207,11 +207,26 @@ class Main:
         btnClear = tk.Button(btn_frame, text="Clear", width=5, bg='gray', fg='white', bd=4, cursor="hand2", relief=RAISED, command=self.clear).grid(row=4, column=3, padx=10, pady=10)
 
         #TAB3 TABLE Frame -------------------------------------------------------------------------------------------------
+        style = ttk.Style()
+        style.element_create("Custom.Treeheading.border", "from", "default")
+        style.layout("Custom.Treeview.Heading", [
+            ("Custom.Treeheading.cell", {'sticky': 'nswe'}),
+            ("Custom.Treeheading.border", {'sticky': 'nswe', 'children': [
+                ("Custom.Treeheading.padding", {'sticky': 'nswe', 'children': [
+                    ("Custom.Treeheading.image", {'side': 'right', 'sticky': ''}),
+                    ("Custom.Treeheading.text", {'sticky': 'we'})
+                ]})
+            ]}),
+        ])
+        style.configure("Custom.Treeview.Heading",
+                        background="gray", foreground="white", relief="flat")
+        style.map("Custom.Treeview.Heading",
+                  relief=[('active', 'groove'), ('pressed', 'sunken')])
         table_frame = Frame(self.tab3, relief=RIDGE)
         table_frame.place(x=15, y=150, width=670, height=130)
         scroll_x = Scrollbar(table_frame, orient=HORIZONTAL)
         scroll_y = Scrollbar(table_frame, orient=VERTICAL)
-        self.data_table = ttk.Treeview(table_frame, column=("sl","branch", "ssh"), xscrollcommand=scroll_x.set, yscrollcommand=scroll_y.set)
+        self.data_table = ttk.Treeview(table_frame, style="Custom.Treeview", column=("sl","branch", "ssh"), xscrollcommand=scroll_x.set, yscrollcommand=scroll_y.set)
         scroll_x.pack(side=BOTTOM, fill=X)
         scroll_y.pack(side=RIGHT, fill=Y)
         scroll_x.config(command=self.data_table.xview)
@@ -221,7 +236,7 @@ class Main:
         self.data_table.heading('ssh', text="SSH")
         self.data_table['show'] = 'headings'
         self.data_table.column("sl", width=10)
-        self.data_table.column("branch", width=30)
+        self.data_table.column("branch", width=10)
         self.data_table.column("ssh", width=300)
         self.data_table.pack(fill=BOTH, expand=1, side=tk.TOP)
         self.data_table.bind("<ButtonRelease-1>", self.get_cursor)
