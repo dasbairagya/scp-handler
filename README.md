@@ -1,5 +1,5 @@
 # scp-handler
-File transfer between remote and local system that using git branches.
+Desktop application that transfer files between remote and local system using git branches.
 
 ![screenshot-1](https://user-images.githubusercontent.com/18226897/83387141-d8f7c980-a409-11ea-9957-b12e3e5ae53c.png)
 
